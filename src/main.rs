@@ -10,20 +10,25 @@ fn main() {
 
 fn avg_med_mod(mut vec :Vec<i32>) -> (f32 , i32, i32) {
     let mut avg = 0.0;
-    let mut med :i32;
+    let med :i32;
+    let mut moda = 0;
     let mut map = HashMap::new();
     for element in vec.iter() {
         let count = map.entry(element).or_insert(0);
         *count += 1;
     }
+    let mut max_element = 0;
     for map_element in map.iter() {
-        println!("{:?}", map_element);
+        if map_element.1 > &max_element {
+            max_element = *map_element.1;
+            moda = **map_element.0;
+        }
     }
+    println!("{:?}", vec);
     vec.sort();
     med = vec[vec.len() / 2];
-    println!("{:?}", vec);
     for element in vec.iter() {
         avg = avg + *element as f32;
     }
-    (avg / vec.len() as f32, med, 22)
+    (avg / vec.len() as f32, med, moda)
 }
