@@ -2,7 +2,10 @@ use std::collections::HashMap;
 
 fn main() {
     
-    println!("{:?} ", avg_med_mod(vec![11, 12, 13, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9]));
+    println!("{:?} ", avg_med_mod(vec![
+        11, 12, 13, 10,  1,  2,  3, 4,  5,  6,
+         7,  8,  9, 12, 22, 11, 12, 7, 11, 22
+         ]));
 }
 
 fn avg_med_mod(mut vec :Vec<i32>) -> (f32 , i32, i32) {
@@ -12,6 +15,9 @@ fn avg_med_mod(mut vec :Vec<i32>) -> (f32 , i32, i32) {
     for element in vec.iter() {
         let count = map.entry(element).or_insert(0);
         *count += 1;
+    }
+    for map_element in map.iter() {
+        println!("{:?}", map_element);
     }
     vec.sort();
     med = vec[vec.len() / 2];
